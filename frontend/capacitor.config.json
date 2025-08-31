@@ -1,5 +1,23 @@
 {
   "appId": "com.faisal.edu",
   "appName": "فيصل - مساعد الطلاب",
-  "webDir": "build"
+  "webDir": "build",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 3000,
+      "launchAutoHide": true,
+      "backgroundColor": "#ffffff",
+      "androidSplashResourceName": "splash",
+      "showSpinner": true,
+      "spinnerColor": "#999999"
+    },
+    "Keyboard": {
+      "resize": "body",
+      "style": "dark",
+      "resizeOnFullScreen": true
+    }
+  }
 }
