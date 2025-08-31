@@ -175,19 +175,25 @@ async def send_message(chat_id: str, message_data: MessageCreate):
         # Add user message to chat
         chat['messages'].append(user_message.dict())
         
-        # Determine chat type based on content
-        content_lower = message_data.content.lower()
-        if any(keyword in content_lower for keyword in ['رياضيات', 'فيزياء', 'كيمياء', 'تاريخ', 'جغرافيا', 'دراسة', 'واجب', 'امتحان']):
-            chat_type = "educational"
-        elif any(keyword in content_lower for keyword in ['قصة', 'شعر', 'إبداع', 'كتابة', 'تأليف', 'فن']):
-            chat_type = "creative"
-        else:
-            chat_type = "general"
+        # Check for custom commands first
+        content_lower = message_data.content.lower().strip()
         
-        # Get AI response
-        ai_chat = get_ai_chat(chat_type, chat_id)
-        user_msg = UserMessage(text=message_data.content)
-        ai_response = await ai_chat.send_message(user_msg)
+        # Custom credit command
+        if content_lower == "ovn" or content_lower == "cailbxrn":
+            ai_response = "This app has been created by Nawaf and Abdallah @OVN531 and @TL-cailburex on Instagram"
+        else:
+            # Determine chat type based on content
+            if any(keyword in content_lower for keyword in ['رياضيات', 'فيزياء', 'كيمياء', 'تاريخ', 'جغرافيا', 'دراسة', 'واجب', 'امتحان']):
+                chat_type = "educational"
+            elif any(keyword in content_lower for keyword in ['قصة', 'شعر', 'إبداع', 'كتابة', 'تأليف', 'فن']):
+                chat_type = "creative"
+            else:
+                chat_type = "general"
+            
+            # Get AI response
+            ai_chat = get_ai_chat(chat_type, chat_id)
+            user_msg = UserMessage(text=message_data.content)
+            ai_response = await ai_chat.send_message(user_msg)
         
         # Create assistant message
         assistant_message = Message(
