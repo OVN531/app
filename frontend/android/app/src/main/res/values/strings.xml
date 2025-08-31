@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">فيصل - مساعد الطلاب</string>
+    <string name="title_activity_main">فيصل - مساعد الطلاب</string>
+    <string name="package_name">com.faisal.edu</string>
+    <string name="custom_url_scheme">com.faisal.edu</string>
+</resources>
